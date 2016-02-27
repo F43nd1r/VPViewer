@@ -1,0 +1,85 @@
+<com.faendir.kepi.vpviewer.views.SlidingFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".fragments.MainFragment">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/logoView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/logo_description"
+            android:paddingBottom="10dp"
+            android:src="@drawable/kepi_text"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/_TitleTextView"
+            android:layout_below="@+id/logoView"
+            android:text="@string/VP_name"/>
+
+        <ImageView
+            android:id="@+id/divider1"
+            style="@style/_BigDivider"
+            android:layout_below="@+id/textView2"
+            tools:ignore="ContentDescription"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider1"/>
+
+        <Button
+            android:id="@+id/empty"
+            style="@style/_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recyclerView"
+            android:layout_gravity="center_horizontal"
+            android:drawableStart="@android:drawable/ic_menu_rotate"
+            android:lines="2"
+            android:text="@string/text_noData"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/textView_status"
+            style="@style/_TitleTextView"
+            android:layout_below="@+id/empty"
+            android:text="@string/status"/>
+
+        <ImageView
+            android:id="@+id/divider2"
+            style="@style/_BigDivider"
+            android:layout_below="@+id/textView_status"
+            tools:ignore="ContentDescription"/>
+
+        <TextView
+            android:id="@+id/textView_networkStatus"
+            android:text="@string/string_empty"
+            style="@style/_TextView"
+            android:layout_below="@+id/divider2"/>
+
+        <ImageView
+            android:id="@+id/divider3"
+            style="@style/_SmallDivider"
+            android:layout_below="@+id/textView_networkStatus"
+            tools:ignore="ContentDescription"/>
+
+        <TextView
+            android:id="@+id/textView_updateStatus"
+            android:text="@string/string_empty"
+            style="@style/_TextView"
+            android:layout_below="@+id/divider3"/>
+
+
+    </RelativeLayout>
+</com.faendir.kepi.vpviewer.views.SlidingFrameLayout>

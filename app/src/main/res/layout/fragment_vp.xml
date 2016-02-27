@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.faendir.kepi.vpviewer.views.SlidingFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".fragments.VPFragment">
+
+        <LinearLayout
+            android:id="@+id/root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/news_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="false"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/news_title"
+                    style="@style/_TitleTextView"
+                    android:text="@string/news_of_day"/>
+
+                <ImageView
+                    android:id="@+id/news_divider"
+                    style="@style/_BigDivider"
+                    tools:ignore="ContentDescription"/>
+
+                <TextView
+                    android:id="@+id/news_text"
+                    style="@style/_TextView"
+                    android:textSize="10sp"/>
+
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:paddingTop="10dp">
+
+                <TableLayout
+                    android:id="@+id/table"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </TableLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+</com.faendir.kepi.vpviewer.views.SlidingFrameLayout>

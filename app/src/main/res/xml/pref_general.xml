@@ -1,0 +1,83 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="@string/pref_enableAcra"
+        android:title="@string/title_enableAcra"/>
+    <PreferenceCategory
+        android:title="Login">
+        <EditTextPreference
+            android:key="@string/pref_user"
+            android:summary="Nicht gesetzt"
+            android:title="Username"/>
+        <EditTextPreference
+            android:inputType="textPassword"
+            android:key="@string/pref_password"
+            android:summary="@string/unset"
+            android:title="Passwort"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Benachrichtigungen">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="notify"
+            android:summary="Benachrichtige bei Updates"
+            android:title="Aktiv"/>
+        <MultiSelectListPreference
+            android:entries="@array/classes"
+            android:entryValues="@array/classes"
+            android:key="class"
+            android:summary="@string/unset"
+            android:title="Klasse"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="wifiOnly"
+            android:title="Nur bei WLAN checken"/>
+        <ListPreference
+            android:defaultValue="@string/update_default"
+            android:entries="@array/update"
+            android:entryValues="@array/update_values"
+            android:key="@string/pref_interval"
+            android:title="Update-Interval"/>
+        <Preference
+            android:enabled="false"
+            android:key="@string/pref_resetNotification"
+            android:title="Benachrichtigungen zurücksetzen"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Aussehen">
+        <com.pavelsikun.seekbarpreference.SeekBarPreference
+            android:key="@string/pref_showDaysCount"
+            android:title="Maximale Anzahl anzuzeigender Tage"
+            app:msbp_defaultValue="2"
+            app:msbp_maxValue="5"
+            app:msbp_minValue="1"/>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/pref_showAsActions"
+            android:title="Menü direkt anzeigen"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/pref_manualView"
+            android:title="Manuelle Ansicht aktivieren"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Über">
+        <Preference
+            android:summary="Lukas Morawietz"
+            android:title="Autor"/>
+        <Preference
+            android:summary="Alexander Pape"
+            android:title="Graphische Gestaltung"/>
+        <Preference
+            android:summary="Gefällt ihnen diese App? Unterstützen Sie die Entwicklung!"
+            android:title="Spenden">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.faendir.com/donate"/>
+        </Preference>
+        <com.faendir.kepi.vpviewer.views.VersionPreference
+            android:title="Version"/>
+    </PreferenceCategory>
+</PreferenceScreen>

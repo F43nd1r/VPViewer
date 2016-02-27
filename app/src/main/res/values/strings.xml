@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VPViewer</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="service_name">UpdateService</string>
+    <string name="unset">Nicht gesetzt</string>
+    <string name="Login_ok">Login OK</string>
+    <string name="Login_failed">Passwort/User-Kombination unbekannt</string>
+    <string name="Login_unknown">Status unbekannt</string>
+    <string name="wifi_ok">WLAN verbunden</string>
+    <string name="network_ok">Netzwerk verbunden</string>
+    <string name="wifi_fail">WLAN nicht verbunden</string>
+    <string name="network_fail">Netzwerk nicht verbunden</string>
+    <string name="no_update">Daten nie abgerufen</string>
+    <string name="last_update">Zuletzt abgerufen</string>
+    <string name="forceUpdate">Update erzwingen</string>
+    <string name="not_taking_place">fällt aus</string>
+    <string name="VP_name">Vertretungsplan</string>
+    <string name="tomorrow">Morgen</string>
+    <string name="today">Heute</string>
+    <string name="status">Status</string>
+    <string name="logo_description">The logo</string>
+    <string name="new_entries">"neue Vertretungen/Ausfälle"</string>
+    <string-array name="update">
+        <item>Alle 15 Minuten</item>
+        <item>Halbstündlich</item>
+        <item>Stündlich</item>
+        <item>Alle 2 Stunden</item>
+        <item>Alle 6 Stunden</item>
+        <item>Alle 12 Stunden</item>
+    </string-array>
+    <string-array name="update_values">
+        <item>900000</item>
+        <item>1800000</item>
+        <item>3600000</item>
+        <item>7200000</item>
+        <item>21600000</item>
+        <item>43200000</item>
+    </string-array>
+    <string name="update_default">3600000</string>
+    <string-array name="classes">
+        <item>5a</item>
+        <item>5b</item>
+        <item>5c</item>
+        <item>5d</item>
+        <item>5e</item>
+        <item>6a</item>
+        <item>6b</item>
+        <item>6c</item>
+        <item>6d</item>
+        <item>6e</item>
+        <item>7a</item>
+        <item>7b</item>
+        <item>7c</item>
+        <item>7d</item>
+        <item>7e</item>
+        <item>8a</item>
+        <item>8b</item>
+        <item>8c</item>
+        <item>8d</item>
+        <item>8e</item>
+        <item>9a</item>
+        <item>9b</item>
+        <item>9c</item>
+        <item>9d</item>
+        <item>9e</item>
+        <item>10a</item>
+        <item>10b</item>
+        <item>10c</item>
+        <item>10d</item>
+        <item>10e</item>
+        <item>J1</item>
+        <item>J2</item>
+    </string-array>
+    <string name="only_for_ics_or_higher">Nur für Android 4.0 und höher</string>
+    <string name="done">Fertig</string>
+    <string name="className">Klasse</string>
+    <string name="hour">Stunde</string>
+    <string name="instead_teacher">Statt Lehrer</string>
+    <string name="instead_subject">Statt Fach</string>
+    <string name="teacher">Vertreter</string>
+    <string name="subject">Fach</string>
+    <string name="room">Raum</string>
+    <string name="instead_hour">Vertr. von</string>
+    <string name="news_of_day">Nachrichten zum Tag</string>
+
+    <string name="error_unkownDay">Etwas ist schief gegangen…\n Sie werden auf die Hauptseite
+        umgeleitet
+    </string>
+    <string name="intent_bootCompleted">android.intent.action.BOOT_COMPLETED</string>
+
+    <string name="file_days">days</string>
+
+    <string name="key_loadDay">loadDay</string>
+    <string name="key_login">login</string>
+    <string name="key_update">update</string>
+    <string name="key_runningVersion">runningVersion</string>
+
+    <string name="pref_user">user</string>
+    <string name="pref_class">class</string>
+    <string name="pref_resetNotification">reset_notification</string>
+    <string name="pref_password">password</string>
+    <string name="pref_showAsActions">showAsActions</string>
+    <string name="pref_wifiOnly">wifiOnly</string>
+    <string name="pref_notify">notify</string>
+    <string name="pref_interval">interval</string>
+    <string name="pref_enableAcra">acra.enable</string>
+
+    <string name="text_exclamation">!</string>
+    <string name="text_comma">", "</string>
+    <string name="text_colon">": "</string>
+
+    <string name="match_emptyArray">[]</string>
+    <string name="title_badLogin">Login fehlgeschalgen</string>
+    <string name="button_login">Login</string>
+    <string name="button_close">Schließen</string>
+    <string name="title_badConnection">Verbindung nicht möglich</string>
+    <string name="text_badConection">Ihr Gerät hat keine Internetverbindung oder der Server reagiert
+        nicht.
+    </string>
+    <string name="log_onStop">onStop</string>
+    <string name="title_enableAcra">Acra aktivieren</string>
+    <string name="key_rawHtml">rawHtml</string>
+    <string name="manualView">Manuelle Ansicht</string>
+    <string name="pref_manualView">enableManualView</string>
+    <string name="title_crash">Crash</string>
+    <string name="text_crash">Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut. Falls der Fehler weiterhin auftritt, verwenden Sie die manuelle Ansicht.</string>
+    <string name="key_lowSpace">lowSpace</string>
+    <string name="key_log">Log</string>
+    <string name="pref_showDaysCount">showDaysCount</string>
+    <string name="text_noData">Keine Daten gefunden\nTippen um es erneut zu versuchen</string>
+    <string name="string_empty"> </string>
+
+</resources>

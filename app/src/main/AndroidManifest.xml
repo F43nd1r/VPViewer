@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.faendir.kepi.vpviewer">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:name=".contexts.VPViewer"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".contexts.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="212.71.198.9"
+                    android:path="/vp_home/VP_Web.php"
+                    android:scheme="http"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".contexts.SettingsActivity"
+            android:label="@string/action_settings"
+            android:parentActivityName=".contexts.MainActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".contexts.MainActivity"/>
+        </activity>
+
+        <service
+            android:name=".contexts.UpdateService"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/service_name">
+        </service>
+
+        <receiver
+            android:name=".contexts.BootBroadcastReceiver"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="org.acra.CrashReportDialog"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="true"
+            android:launchMode="singleInstance"
+            android:process=":error_report"
+            android:theme="@style/Theme.Dialog"/>
+    </application>
+
+</manifest>

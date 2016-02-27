@@ -1,0 +1,19 @@
+<com.faendir.kepi.vpviewer.views.SlidingFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                    xmlns:tools="http://schemas.android.com/tools"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    tools:context="com.faendir.kepi.vpviewer.fragments.BlankFragment"
+                                                    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_warning"
+        android:tint="#ffcccccc"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_marginPercent="20%"/>
+</com.faendir.kepi.vpviewer.views.SlidingFrameLayout>
