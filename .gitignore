@@ -84,6 +84,10 @@ $RECYCLE.BIN/
 *.lnk
 
 # IntelliJ files
-.idea/*
-!idea/.name
+/.idea/*
+!/.idea/.name
 *.iml
+/app/manifest-merger-debug-report.txt
+/app/manifest-merger-release-report.txt
+/gradle/*
+gradlew*
