@@ -4,14 +4,17 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.StringRes;
 
-import com.faendir.kepi.vpviewer.R;
 import com.faendir.kepi.vpviewer.utils.Logger;
 
 import org.acra.ACRA;
-import org.acra.ErrorReporter;
-import org.acra.ExceptionHandlerInitializer;
+import org.acra.ACRAConstants;
+import org.acra.ReportField;
 import org.acra.annotation.ReportsCrashes;
+import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.HttpSender;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Lukas on 14.04.2015.
@@ -28,14 +31,13 @@ public class VPViewer extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        ACRA.init(this);
+        ArrayList<ReportField> fields = new ArrayList<>(Arrays.asList(ACRAConstants.DEFAULT_REPORT_FIELDS));
+        fields.add(ReportField.APPLICATION_LOG);
+        ConfigurationBuilder builder = new ConfigurationBuilder(this)
+                .setApplicationLogFile(Logger.getPath())
+                .setCustomReportContent(fields.toArray(new ReportField[fields.size()]));
+        ACRA.init(this, builder.build());
         ACRA.getErrorReporter().clearCustomData();
-        ACRA.getErrorReporter().setExceptionHandlerInitializer(new ExceptionHandlerInitializer() {
-            @Override
-            public void initializeExceptionHandler(ErrorReporter reporter) {
-                reporter.putCustomData(getString(R.string.key_log), Logger.globalLog());
-            }
-        });
         setContext(getApplicationContext());
     }
 

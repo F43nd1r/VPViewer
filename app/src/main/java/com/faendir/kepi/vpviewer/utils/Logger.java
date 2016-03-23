@@ -9,41 +9,86 @@ import android.util.Log;
 import com.faendir.kepi.vpviewer.BuildConfig;
 import com.faendir.kepi.vpviewer.contexts.VPViewer;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.LinkedBlockingQueue;
+
 /**
  * Created by Lukas on 04.03.2015.
  * Manages Logs in debug mode.
  */
 public class Logger {
-    private static final StringBuilder GLOBAL = new StringBuilder();
-    private static final int MAX_LENGTH = 2048;
+    private static final LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<>();
+    private static final File file = new File(System.getProperty("java.io.tmpdir"),Logger.class.getName()+"-log.txt");
+    private static Thread thread;
+    static {
+        queue.add("--------- beginning of process ---------");
+    }
 
-    private final String clazz;
+    private final String tag;
 
     public Logger(@NonNull Context context) {
-        clazz = context.getClass().getSimpleName();
+        tag = context.getClass().getSimpleName();
     }
 
     public Logger(String className) {
-        clazz = className;
+        tag = className;
     }
 
     public void log(String message) {
-        if (BuildConfig.DEBUG) Log.d(clazz, message);
-        if (GLOBAL.length() > MAX_LENGTH) {
-            GLOBAL.delete(0, GLOBAL.indexOf("\n", 512) + 1);
-        }
-        GLOBAL.append(clazz).append(": ").append(message).append("|::|");
+        if (BuildConfig.DEBUG) Log.d(tag, message);
+        List<String> lines = Arrays.asList(message.split("\n"));
+        lines.set(0, tag + ": " + lines.get(0));
+        queue.addAll(lines);
+        ensureRunning();
     }
 
     public void log(@StringRes int messageId) {
         log(VPViewer.getStringStatic(messageId));
     }
 
-    public static String globalLog() {
-        return GLOBAL.toString();
-    }
-
     public void log(Throwable t) {
         log(t.getMessage() + "\n" + TextUtils.join("\n", t.getStackTrace()));
+    }
+
+    public static String getPath(){
+        return file.getPath();
+    }
+
+    private static void ensureRunning() {
+        if (thread == null || !thread.isAlive()) {
+            thread = new FileLogThread();
+            thread.start();
+        }
+    }
+
+    private static class FileLogThread extends Thread {
+        @Override
+        public void run() {
+            Writer writer = null;
+            try {
+                writer = new BufferedWriter(new FileWriter(file, true));
+                //noinspection InfiniteLoopStatement
+                while (true) {
+                    writer.append(queue.take()).append("\n");
+                    if (queue.isEmpty()) {
+                        writer.flush();
+                    }
+                }
+            } catch (IOException | InterruptedException ignored) {
+            } finally {
+                if (writer != null) {
+                    try {
+                        writer.close();
+                    } catch (IOException ignored) {
+                    }
+                }
+            }
+        }
     }
 }
