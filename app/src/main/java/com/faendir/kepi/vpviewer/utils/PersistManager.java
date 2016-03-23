@@ -14,7 +14,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
-import org.acra.ACRA;
 import org.jsoup.nodes.Document;
 
 import java.util.ArrayList;
@@ -80,9 +79,8 @@ public class PersistManager {
         try {
             return GSON.<HashMap<String, Day>>fromJson(sharedPref.getString(VPViewer.getStringStatic(R.string.file_days), ""), TYPE_TOKEN.getType());
         } catch (JsonSyntaxException e) {
+            //this might happen if something in the datastructure changed in the last update. So we can just delete the old data and it should be good.
             resetDays();
-            ACRA.getErrorReporter().putCustomData("COMMENT", "Reset saved data because of JSON error");
-            ACRA.getErrorReporter().handleSilentException(e);
         }
         return null;
     }

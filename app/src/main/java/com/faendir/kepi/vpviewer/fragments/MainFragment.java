@@ -243,9 +243,9 @@ public class MainFragment extends Fragment {
             editor.putBoolean(getString(R.string.pref_enableAcra), true);
         }
         editor.putBoolean(getString(R.string.pref_manualView), false);
-        forcedUpdate();
         editor.putString(getString(R.string.key_runningVersion), currentVersion);
         editor.apply();
+        forcedUpdate();
     }
 
     @Override
