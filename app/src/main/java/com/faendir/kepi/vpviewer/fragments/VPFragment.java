@@ -1,6 +1,7 @@
 package com.faendir.kepi.vpviewer.fragments;
 
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -44,11 +45,15 @@ public class VPFragment extends Fragment {
     private int two;
     private View view;
     private Date date;
+    private int textSize;
+    private SharedPreferences sharedPref;
+    private boolean isSecondaryLoad = false;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_vp, container, false);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         titleParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         ten = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
         five = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
@@ -59,12 +64,23 @@ public class VPFragment extends Fragment {
         textParams.setMargins(ten, 0, ten, 0);
         Bundle args = getArguments();
         date = (Date) args.getSerializable(getString(R.string.key_loadDay));
+        safeDisplay();
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        if(isSecondaryLoad) safeDisplay();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        isSecondaryLoad = true;
+    }
+
+    private void safeDisplay(){
         if (date != null) {
             display(date);
         } else {
@@ -84,6 +100,7 @@ public class VPFragment extends Fragment {
             LayoutManager.mainFragment(getActivity());
             return;
         }
+        textSize = sharedPref.getInt(getString(R.string.pref_textSize), 12);
         String[] news = day.getNews();
         if (news.length == 0) {
             root.removeView(view.findViewById(R.id.news_layout));
@@ -92,7 +109,11 @@ public class VPFragment extends Fragment {
             for (String s : news) {
                 builder.append(Html.fromHtml(s)).append("\n\n");
             }
-            ((TextView) view.findViewById(R.id.news_text)).setText(builder);
+            TextView title = (TextView) view.findViewById(R.id.news_title);
+            title.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+            TextView text = (TextView) view.findViewById(R.id.news_text);
+            text.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+            text.setText(builder);
         }
         TableRow titleRow = new TableRow(getActivity());
         addTitleToRow(R.string.className, titleRow, Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
@@ -114,7 +135,7 @@ public class VPFragment extends Fragment {
         divider.setLayoutParams(dividerParams);
         dividerRow.addView(divider);
         table.addView(dividerRow);
-        boolean shouldUseOddRows = PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(getString(R.string.pref_oddRows), false);
+        boolean shouldUseOddRows = sharedPref.getBoolean(getString(R.string.pref_oddRows), false);
         boolean isOdd = false;
         for (VPEntry entry : day.getEntryList()) {
             TableRow row = new TableRow(getActivity());
@@ -138,7 +159,7 @@ public class VPFragment extends Fragment {
         TextView txt = new TextView(getActivity());
         txt.setText(textId);
         txt.setGravity(gravity);
-        txt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+        txt.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
         txt.setTextColor(getResources().getColor(android.R.color.black));
         row.addView(txt, titleParams);
     }
@@ -147,7 +168,7 @@ public class VPFragment extends Fragment {
         TextView txt = new TextView(getActivity());
         txt.setText(text.replace("&nbsp;", " - "));
         txt.setGravity(gravity);
-        txt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+        txt.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
         txt.setTextColor(getResources().getColor(android.R.color.black));
         row.addView(txt, textParams);
     }

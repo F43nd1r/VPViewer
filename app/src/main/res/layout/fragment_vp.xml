@@ -25,6 +25,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/news_title"
                     style="@style/_TitleTextView"
                     android:text="@string/news_of_day"/>
 
@@ -34,8 +35,7 @@
 
                 <TextView
                     android:id="@+id/news_text"
-                    style="@style/_TextView"
-                    android:textSize="12sp"/>
+                    style="@style/_TextView"/>
 
             </LinearLayout>
 

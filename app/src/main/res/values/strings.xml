@@ -130,5 +130,6 @@
     <string name="img_alert">Alert</string>
     <string name="toast_crashSent">Entschuldigung, das hätte nicht passieren dürfen.\nBericht wird gesendet…</string>
     <string name="pref_oddRows">oddRows</string>
+    <string name="pref_textSize">textSize</string>
 
 </resources>
