@@ -18,6 +18,7 @@ import android.support.v4.app.NotificationCompat;
 import com.faendir.kepi.vpviewer.R;
 import com.faendir.kepi.vpviewer.data.Day;
 import com.faendir.kepi.vpviewer.data.VPEntry;
+import com.faendir.kepi.vpviewer.event.UpdateEvent;
 import com.faendir.kepi.vpviewer.utils.ConnectionResult;
 import com.faendir.kepi.vpviewer.utils.DateFactory;
 import com.faendir.kepi.vpviewer.utils.DateFormat;
@@ -26,6 +27,7 @@ import com.faendir.kepi.vpviewer.utils.PersistManager;
 
 import org.acra.ACRA;
 import org.apache.commons.io.Charsets;
+import org.greenrobot.eventbus.EventBus;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -50,7 +52,6 @@ import java.util.Set;
  */
 public class UpdateService extends Service {
     private final Logger logger = new Logger(this);
-    private final IBinder binder = new LocalBinder();
 
     private static final String SELECTOR_TITLE = ".mon_title";
     private static final String SELECTOR_TABLE = ".mon_list";
@@ -77,7 +78,7 @@ public class UpdateService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(final Intent intent, int flags, int startId) {
         logger.log(R.string.log_onStart);
         new Thread(new Runnable() {
             @Override
@@ -85,8 +86,9 @@ public class UpdateService extends Service {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo wifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-                if (sharedPreferences.getBoolean(getString(R.string.pref_notify), false) && (!sharedPreferences.getBoolean(getString(R.string.pref_wifiOnly), false) || wifi.isConnected())) {
-                    getAndHandleRawHtml();
+                if (intent.getBooleanExtra(getString(R.string.extra_isForeground), false) || sharedPreferences.getBoolean(getString(R.string.pref_notify), false) && (!sharedPreferences.getBoolean(getString(R.string.pref_wifiOnly), false) || wifi.isConnected())) {
+                    ConnectionResult result = getAndHandleRawHtml();
+                    EventBus.getDefault().post(new UpdateEvent(result));
                 }
                 stopSelf();
             }
@@ -94,10 +96,10 @@ public class UpdateService extends Service {
         return Service.START_STICKY;
     }
 
+    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        logger.log(R.string.log_onBind);
-        return binder;
+        return null;
     }
 
     private void notify(@Nullable Day day, @NonNull Day newDay) {
@@ -151,10 +153,7 @@ public class UpdateService extends Service {
                 input = connection.getInputStream();
                 Document document = Jsoup.parse(input, Charsets.UTF_8.name(), HOST);
                 boolean correctLogin = document.select(SELECTOR_TITLE).size() > 0;
-                if (!correctLogin) {
-                    sharedPref.edit().putString(getString(R.string.key_login), getString(R.string.Login_failed)).apply();
-                    return ConnectionResult.BAD_LOGIN;
-                } else {
+                if (correctLogin) {
                     sharedPref.edit()
                             .putString(getString(R.string.key_login), getString(R.string.Login_ok))
                             .putString(getString(R.string.key_update), DateFactory.format(Calendar.getInstance().getTime(), DateFormat.WITH_TIME))
@@ -162,6 +161,9 @@ public class UpdateService extends Service {
                     handle(document);
                     logger.log(getString(R.string.log_updateSet) + DateFactory.format(Calendar.getInstance().getTime(), DateFormat.WITH_TIME));
                     return ConnectionResult.SUCCESS;
+                } else {
+                    sharedPref.edit().putString(getString(R.string.key_login), getString(R.string.Login_failed)).apply();
+                    return ConnectionResult.BAD_LOGIN;
                 }
             } catch (IOException e) {
                 logger.log(e);
@@ -253,12 +255,5 @@ public class UpdateService extends Service {
             if (compare1.contains(compare2)) return true;
         }
         return false;
-    }
-
-    public class LocalBinder extends Binder {
-        @NonNull
-        public UpdateService getService() {
-            return UpdateService.this;
-        }
     }
 }

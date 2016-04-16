@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.2'
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         applicationId "com.faendir.kepi.vpviewer"
@@ -20,12 +20,13 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.android.support:recyclerview-v7:23.2.1'
-    compile 'com.android.support:percent:23.2.1'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:recyclerview-v7:23.3.0'
+    compile 'com.android.support:percent:23.3.0'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'commons-io:commons-io:2.4'
     compile 'ch.acra:acra:4.8.5'
     compile 'org.jsoup:jsoup:1.8.3'
     compile 'org.solovyev.android.views:linear-layout-manager:0.5@aar'
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

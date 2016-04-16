@@ -34,7 +34,7 @@ import java.util.Date;
 public class VPFragment extends Fragment {
 
 
-    private final Logger logger = new Logger(VPFragment.class.getSimpleName());
+    private final Logger logger = new Logger(this);
     private TableRow.LayoutParams titleParams;
     private TableRow.LayoutParams rowParams;
     private TableRow.LayoutParams textParams;

@@ -23,8 +23,10 @@ import java.util.Date;
 import java.util.Set;
 
 /**
+ * Manages global layout
+ *
+ *
  * Created by Lukas on 18.01.2016.
- * manages global layout
  */
 public final class LayoutManager {
     private static final String TAG_MAIN = "main";

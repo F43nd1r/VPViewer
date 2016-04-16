@@ -43,7 +43,7 @@ public class PersistManager {
         Map<String, Day> map = getMap();
         if (map == null) map = new HashMap<>();
         map.put(DateFactory.format(day.getDate(), DateFormat.FOR_FILE), day);
-        sharedPref.edit().putString(VPViewer.getStringStatic(R.string.file_days), GSON.toJson(map, TYPE_TOKEN.getType())).apply();
+        sharedPref.edit().putString(context.getString(R.string.file_days), GSON.toJson(map, TYPE_TOKEN.getType())).apply();
     }
 
     @Nullable
@@ -69,7 +69,7 @@ public class PersistManager {
             any = true;
         }
         if (any) {
-            sharedPref.edit().putString(VPViewer.getStringStatic(R.string.file_days), GSON.toJson(map, TYPE_TOKEN.getType())).apply();
+            sharedPref.edit().putString(context.getString(R.string.file_days), GSON.toJson(map, TYPE_TOKEN.getType())).apply();
         }
         return dates;
     }
@@ -77,7 +77,7 @@ public class PersistManager {
     private Map<String, Day> getMap() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         try {
-            return GSON.<HashMap<String, Day>>fromJson(sharedPref.getString(VPViewer.getStringStatic(R.string.file_days), ""), TYPE_TOKEN.getType());
+            return GSON.<HashMap<String, Day>>fromJson(sharedPref.getString(context.getString(R.string.file_days), ""), TYPE_TOKEN.getType());
         } catch (JsonSyntaxException e) {
             //this might happen if something in the datastructure changed in the last update. So we can just delete the old data and it should be good.
             resetDays();
@@ -87,19 +87,19 @@ public class PersistManager {
 
     public void setRaw(@NonNull Document document) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPref.edit().putString(VPViewer.getStringStatic(R.string.key_rawHtml), document.outerHtml()).apply();
+        sharedPref.edit().putString(context.getString(R.string.key_rawHtml), document.outerHtml()).apply();
     }
 
     public String getRaw() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPref.getString(VPViewer.getStringStatic(R.string.key_rawHtml), null);
+        return sharedPref.getString(context.getString(R.string.key_rawHtml), null);
     }
 
     public void resetDays() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPref.edit()
-                .remove(VPViewer.getStringStatic(R.string.file_days))
-                .remove(VPViewer.getStringStatic(R.string.key_rawHtml))
+                .remove(context.getString(R.string.file_days))
+                .remove(context.getString(R.string.key_rawHtml))
                 .apply();
     }
 }

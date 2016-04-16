@@ -22,7 +22,7 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
         if (intent.getAction().equals(context.getString(R.string.intent_bootCompleted))) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             if (sharedPreferences.getBoolean(context.getString(R.string.pref_notify), false)) {
-                ServiceManager.startService(context, Integer.parseInt(sharedPreferences.getString(context.getString(R.string.pref_interval), String.valueOf(AlarmManager.INTERVAL_HOUR))));
+                ServiceManager.scheduleService(context, Integer.parseInt(sharedPreferences.getString(context.getString(R.string.pref_interval), String.valueOf(AlarmManager.INTERVAL_HOUR))));
                 new Logger(context).log(R.string.log_startedBoot);
             }
         } else new Logger(context).log(R.string.log_badIntent);

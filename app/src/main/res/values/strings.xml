@@ -13,7 +13,7 @@
     <string name="wifi_fail">WLAN nicht verbunden</string>
     <string name="network_fail">Netzwerk nicht verbunden</string>
     <string name="no_update">Daten nie abgerufen</string>
-    <string name="last_update">Zuletzt abgerufen</string>
+    <string name="last_update">Zuletzt abgerufen: %1s</string>
     <string name="forceUpdate">Update erzwingen</string>
     <string name="not_taking_place">fällt aus</string>
     <string name="VP_name">Vertretungsplan</string>
@@ -131,5 +131,6 @@
     <string name="pref_showDaysCount">showDaysCount</string>
     <string name="text_noData">Keine Daten gefunden\nTippen um es erneut zu versuchen</string>
     <string name="string_empty"> </string>
+    <string name="extra_isForeground">isForeground</string>
 
 </resources>

@@ -32,11 +32,15 @@ public class Logger {
 
     private final String tag;
 
-    public Logger(@NonNull Context context) {
-        tag = context.getClass().getSimpleName();
+    public Logger(@NonNull Object object) {
+        this(object.getClass());
     }
 
-    public Logger(String className) {
+    public Logger(@NonNull Class clazz){
+        this(clazz.getSimpleName());
+    }
+
+    public Logger(@NonNull String className) {
         tag = className;
     }
 

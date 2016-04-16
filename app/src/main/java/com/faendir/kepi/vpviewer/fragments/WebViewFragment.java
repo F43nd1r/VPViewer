@@ -16,7 +16,7 @@ import com.faendir.kepi.vpviewer.utils.PersistManager;
 public class WebViewFragment extends Fragment {
 
     private WebView webView;
-    private final Logger logger = new Logger(WebViewFragment.class.getSimpleName());
+    private final Logger logger = new Logger(this);
 
     @Nullable
     @Override

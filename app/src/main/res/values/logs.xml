@@ -11,7 +11,7 @@
     <string name="log_settingsSel">Selected Settings</string>
     <string name="log_updateSel">Selected force update</string>
     <string name="log_fatalSel">SELECTED INVALID: OPTIONS MENU MIGHT BE BROKEN</string>
-    <string name="log_forcedUpdate">Service bound for forced update</string>
+    <string name="log_forcedUpdate">Invalidate for forced update</string>
     <string name="log_and">" and "</string>
     <string name="log_serviceConnected">Service connected</string>
     <string name="log_readIn">readIn</string>
@@ -26,8 +26,8 @@
     <string name="log_serviceStarted">Started service</string>
     <string name="log_resetDays">Reset Days</string>
     <string name="log_onCreate">onCreate</string>
-    <string name="log_dataOutOfDate">Service bound because data out of date</string>
-    <string name="log_noData">Service bound because no data found</string>
+    <string name="log_dataOutOfDate">Invalidate because data out of date</string>
+    <string name="log_noData">Invalidate because no data found</string>
     <string name="log_statusUpdate">statusUpdate</string>
     <string name="log_onBind">onBind</string>
     <string name="log_buttonsEnable">"Attempt to enable Buttons with dates "</string>

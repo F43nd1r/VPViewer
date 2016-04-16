@@ -47,7 +47,7 @@ public final class DateFactory {
                 return date_readable.parse(string);
             } catch (ParseException ignored) {
             }
-            new Logger(DateFactory.class.getSimpleName()).log(VPViewer.getStringStatic(R.string.log_dateParseFailed) + string);
+            new Logger(DateFactory.class).log(VPViewer.getStringStatic(R.string.log_dateParseFailed) + string);
             return null;
         }
     }

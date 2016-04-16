@@ -27,7 +27,7 @@ import java.util.List;
  * Created by Lukas on 18.01.2016.
  * adapter for the main fragment list view
  */
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private final Activity context;
     private int selected = -1;

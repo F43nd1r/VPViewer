@@ -2,8 +2,11 @@ package com.faendir.kepi.vpviewer.contexts;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.StringRes;
 
+import com.faendir.kepi.vpviewer.R;
+import com.faendir.kepi.vpviewer.event.InvalidateRequest;
 import com.faendir.kepi.vpviewer.utils.Logger;
 
 import org.acra.ACRA;
@@ -12,6 +15,8 @@ import org.acra.ReportField;
 import org.acra.annotation.ReportsCrashes;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.HttpSender;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +43,7 @@ public class VPViewer extends Application {
                 .setCustomReportContent(fields.toArray(new ReportField[fields.size()]));
         ACRA.init(this, builder.build());
         ACRA.getErrorReporter().clearCustomData();
+        EventBus.getDefault().register(this);
         setContext(getApplicationContext());
     }
 
@@ -49,5 +55,12 @@ public class VPViewer extends Application {
 
     private static void setContext(Context c) {
         context = c;
+    }
+
+    @Subscribe
+    public void onEvent(InvalidateRequest request) {
+        Intent intent = new Intent(this, UpdateService.class);
+        intent.putExtra(getString(R.string.extra_isForeground), request.isForeground());
+        startService(intent);
     }
 }

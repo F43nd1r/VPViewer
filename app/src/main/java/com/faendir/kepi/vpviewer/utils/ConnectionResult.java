@@ -7,6 +7,5 @@ public enum ConnectionResult {
     BAD_LOGIN,
     CONNECTION_FAILED,
     SUCCESS,
-    CRASH,
-    CANCELLED
+    CRASH
 }
