@@ -22,12 +22,6 @@ import java.util.concurrent.LinkedBlockingQueue;
  * Manages Logs in debug mode.
  */
 public class Logger {
-    private static final LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<>();
-    private static final File file = new File(System.getProperty("java.io.tmpdir"),Logger.class.getName()+"-log.txt");
-    private static Thread thread;
-    static {
-        queue.add("--------- beginning of process ---------");
-    }
 
     private final String tag;
 
@@ -45,10 +39,6 @@ public class Logger {
 
     public void log(String message) {
         if (BuildConfig.DEBUG) Log.d(tag, message);
-        List<String> lines = Arrays.asList(message.split("\n"));
-        lines.set(0, tag + ": " + lines.get(0));
-        queue.addAll(lines);
-        ensureRunning();
     }
 
     public void log(@StringRes int messageId) {
@@ -57,41 +47,5 @@ public class Logger {
 
     public void log(Throwable t) {
         log(t.getMessage() + "\n" + TextUtils.join("\n", t.getStackTrace()));
-    }
-
-    public static String getPath(){
-        return file.getPath();
-    }
-
-    private static void ensureRunning() {
-        if (thread == null || !thread.isAlive()) {
-            thread = new FileLogThread();
-            thread.start();
-        }
-    }
-
-    private static class FileLogThread extends Thread {
-        @Override
-        public void run() {
-            Writer writer = null;
-            try {
-                writer = new BufferedWriter(new FileWriter(file, true));
-                //noinspection InfiniteLoopStatement
-                while (true) {
-                    writer.append(queue.take()).append("\n");
-                    if (queue.isEmpty()) {
-                        writer.flush();
-                    }
-                }
-            } catch (IOException | InterruptedException ignored) {
-            } finally {
-                if (writer != null) {
-                    try {
-                        writer.close();
-                    } catch (IOException ignored) {
-                    }
-                }
-            }
-        }
     }
 }
