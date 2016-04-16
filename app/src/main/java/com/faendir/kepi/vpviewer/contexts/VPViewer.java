@@ -39,12 +39,7 @@ public class VPViewer extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        ArrayList<ReportField> fields = new ArrayList<>(Arrays.asList(ACRAConstants.DEFAULT_REPORT_FIELDS));
-        fields.add(ReportField.APPLICATION_LOG);
-        ConfigurationBuilder builder = new ConfigurationBuilder(this)
-                .setApplicationLogFile(Logger.getPath())
-                .setCustomReportContent(fields.toArray(new ReportField[fields.size()]));
-        ACRA.init(this, builder.build());
+        ACRA.init(this);
         ACRA.getErrorReporter().clearCustomData();
         EventBus.getDefault().register(this);
         setContext(getApplicationContext());
