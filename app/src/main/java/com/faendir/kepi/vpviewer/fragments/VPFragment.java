@@ -2,6 +2,7 @@ package com.faendir.kepi.vpviewer.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
@@ -58,13 +59,18 @@ public class VPFragment extends Fragment {
         textParams.setMargins(ten, 0, ten, 0);
         Bundle args = getArguments();
         date = (Date) args.getSerializable(getString(R.string.key_loadDay));
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         if (date != null) {
             display(date);
         } else {
             logger.log(getString(R.string.log_intentNoData));
             LayoutManager.mainFragment(getActivity());
         }
-        return view;
     }
 
     private void display(Date which) {
@@ -90,13 +96,13 @@ public class VPFragment extends Fragment {
         }
         TableRow titleRow = new TableRow(getActivity());
         addTitleToRow(R.string.className, titleRow, Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
-        addTitleToRow(R.string.hour, titleRow, Gravity.RIGHT | Gravity.BOTTOM);
-        addTitleToRow(R.string.instead_teacher, titleRow, Gravity.LEFT | Gravity.BOTTOM);
-        addTitleToRow(R.string.instead_subject, titleRow, Gravity.LEFT | Gravity.BOTTOM);
-        addTitleToRow(R.string.teacher, titleRow, Gravity.LEFT | Gravity.BOTTOM);
-        addTitleToRow(R.string.subject, titleRow, Gravity.LEFT | Gravity.BOTTOM);
-        addTitleToRow(R.string.room, titleRow, Gravity.RIGHT | Gravity.BOTTOM);
-        addTitleToRow(R.string.instead_hour, titleRow, Gravity.RIGHT | Gravity.BOTTOM);
+        addTitleToRow(R.string.hour, titleRow, Gravity.END | Gravity.BOTTOM);
+        addTitleToRow(R.string.instead_teacher, titleRow, Gravity.START | Gravity.BOTTOM);
+        addTitleToRow(R.string.instead_subject, titleRow, Gravity.START | Gravity.BOTTOM);
+        addTitleToRow(R.string.teacher, titleRow, Gravity.START | Gravity.BOTTOM);
+        addTitleToRow(R.string.subject, titleRow, Gravity.START | Gravity.BOTTOM);
+        addTitleToRow(R.string.room, titleRow, Gravity.END | Gravity.BOTTOM);
+        addTitleToRow(R.string.instead_hour, titleRow, Gravity.END | Gravity.BOTTOM);
         table.addView(titleRow, rowParams);
         TableRow dividerRow = new TableRow(getActivity());
         ImageView divider = new ImageView(getActivity());
@@ -108,17 +114,23 @@ public class VPFragment extends Fragment {
         divider.setLayoutParams(dividerParams);
         dividerRow.addView(divider);
         table.addView(dividerRow);
+        boolean shouldUseOddRows = PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(getString(R.string.pref_oddRows), false);
+        boolean isOdd = false;
         for (VPEntry entry : day.getEntryList()) {
             TableRow row = new TableRow(getActivity());
+            if(isOdd) {
+                row.setBackgroundColor(getResources().getColor(R.color.lighter_gray));
+            }
             addToRow(entry.hours, row, Gravity.CENTER_HORIZONTAL);
-            addToRow(entry.className, row, Gravity.RIGHT);
-            addToRow(entry.teacherFrom, row, Gravity.LEFT);
-            addToRow(entry.subjectFrom, row, Gravity.LEFT);
-            addToRow(entry.teacherTo, row, Gravity.LEFT);
-            addToRow(entry.subjectTo, row, Gravity.LEFT);
-            addToRow(entry.room, row, Gravity.RIGHT);
-            addToRow(entry.hourFrom, row, Gravity.RIGHT);
+            addToRow(entry.className, row, Gravity.END);
+            addToRow(entry.teacherFrom, row, Gravity.START);
+            addToRow(entry.subjectFrom, row, Gravity.START);
+            addToRow(entry.teacherTo, row, Gravity.START);
+            addToRow(entry.subjectTo, row, Gravity.START);
+            addToRow(entry.room, row, Gravity.END);
+            addToRow(entry.hourFrom, row, Gravity.END);
             table.addView(row, rowParams);
+            isOdd = !isOdd && shouldUseOddRows;
         }
     }
 

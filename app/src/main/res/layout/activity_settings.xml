@@ -6,6 +6,7 @@
               android:orientation="vertical">
 
     <fragment
+        android:id="@+id/fragment"
         android:name="com.faendir.kepi.vpviewer.fragments.PrefsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -40,17 +40,19 @@
             </LinearLayout>
 
             <HorizontalScrollView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
-                android:paddingTop="10dp">
+                android:paddingTop="10dp"
+                android:fillViewport="true">
 
                 <TableLayout
                     android:id="@+id/table"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="*">
 
                 </TableLayout>
             </HorizontalScrollView>

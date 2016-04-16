@@ -12,20 +12,12 @@ import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 
+import com.faendir.kepi.vpviewer.BuildConfig;
+
 class VersionPreference extends Preference {
 
     public VersionPreference(@NonNull Context context, AttributeSet attrs) {
         super(context, attrs);
-        String versionName;
-        final PackageManager packageManager = context.getPackageManager();
-        if (packageManager != null) {
-            try {
-                PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-                versionName = packageInfo.versionName;
-            } catch (PackageManager.NameNotFoundException e) {
-                versionName = null;
-            }
-            setSummary(versionName);
-        }
+        setSummary(BuildConfig.VERSION_NAME);
     }
 }

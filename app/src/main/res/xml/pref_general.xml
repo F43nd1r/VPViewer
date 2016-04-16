@@ -9,7 +9,7 @@
         android:title="Login">
         <EditTextPreference
             android:key="@string/pref_user"
-            android:summary="Nicht gesetzt"
+            android:summary="@string/unset"
             android:title="Username"/>
         <EditTextPreference
             android:inputType="textPassword"
@@ -61,6 +61,10 @@
             android:defaultValue="false"
             android:key="@string/pref_manualView"
             android:title="Manuelle Ansicht aktivieren"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/pref_oddRows"
+            android:title="Tabellenreihen unterschiedlich färben"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="Über">
@@ -76,6 +80,13 @@
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="http://www.faendir.com/donate"/>
+        </Preference>
+        <Preference
+            android:title="Email"
+            android:summary="Sie haben Anmerkungen oder Verbesserungsvorschläge? Schreiben Sie eine Email!">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="mailto:support@faendir.com?subject=VPViewer"/>
         </Preference>
         <com.faendir.kepi.vpviewer.views.VersionPreference
             android:title="Version"/>
