@@ -128,5 +128,6 @@
     <string name="string_empty"> </string>
     <string name="extra_isForeground">isForeground</string>
     <string name="img_alert">Alert</string>
+    <string name="toast_crashSent">Entschuldigung, das hätte nicht passieren dürfen.\nBericht wird gesendet…</string>
 
 </resources>

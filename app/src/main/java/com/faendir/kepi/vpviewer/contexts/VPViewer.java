@@ -12,6 +12,7 @@ import com.faendir.kepi.vpviewer.utils.Logger;
 import org.acra.ACRA;
 import org.acra.ACRAConstants;
 import org.acra.ReportField;
+import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.HttpSender;
@@ -26,11 +27,13 @@ import java.util.Arrays;
  * Represents the application, initializes crash tools
  */
 @ReportsCrashes(
+        mode = ReportingInteractionMode.TOAST,
         httpMethod = HttpSender.Method.PUT,
         reportType = HttpSender.Type.JSON,
         formUri = "https://faendir.smileupps.com/acra-myapp-5c21de/_design/acra-storage/_update/report",
         formUriBasicAuthLogin = "vpviewer",
-        formUriBasicAuthPassword = "vpR3p0rt"
+        formUriBasicAuthPassword = "vpR3p0rt",
+        resToastText = R.string.toast_crashSent
 )
 public class VPViewer extends Application {
     @Override
