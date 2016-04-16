@@ -72,10 +72,6 @@ public final class DateFactory {
         }
     }
 
-    public static String parseToPattern(String string, DateFormat pattern) {
-        return format(parse(string), pattern);
-    }
-
     private static class Lock {
 
     }

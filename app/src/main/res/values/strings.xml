@@ -17,8 +17,6 @@
     <string name="forceUpdate">Update erzwingen</string>
     <string name="not_taking_place">fällt aus</string>
     <string name="VP_name">Vertretungsplan</string>
-    <string name="tomorrow">Morgen</string>
-    <string name="today">Heute</string>
     <string name="status">Status</string>
     <string name="logo_description">The logo</string>
     <string name="new_entries">"neue Vertretungen/Ausfälle"</string>
@@ -73,7 +71,6 @@
         <item>J1</item>
         <item>J2</item>
     </string-array>
-    <string name="only_for_ics_or_higher">Nur für Android 4.0 und höher</string>
     <string name="done">Fertig</string>
     <string name="className">Klasse</string>
     <string name="hour">Stunde</string>
@@ -109,7 +106,6 @@
 
     <string name="text_exclamation">!</string>
     <string name="text_comma">", "</string>
-    <string name="text_colon">": "</string>
 
     <string name="match_emptyArray">[]</string>
     <string name="title_badLogin">Login fehlgeschalgen</string>
@@ -127,10 +123,10 @@
     <string name="title_crash">Crash</string>
     <string name="text_crash">Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut. Falls der Fehler weiterhin auftritt, verwenden Sie die manuelle Ansicht.</string>
     <string name="key_lowSpace">lowSpace</string>
-    <string name="key_log">Log</string>
     <string name="pref_showDaysCount">showDaysCount</string>
     <string name="text_noData">Keine Daten gefunden\nTippen um es erneut zu versuchen</string>
     <string name="string_empty"> </string>
     <string name="extra_isForeground">isForeground</string>
+    <string name="img_alert">Alert</string>
 
 </resources>

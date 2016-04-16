@@ -25,19 +25,17 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/news_title"
                     style="@style/_TitleTextView"
                     android:text="@string/news_of_day"/>
 
                 <ImageView
-                    android:id="@+id/news_divider"
                     style="@style/_BigDivider"
                     tools:ignore="ContentDescription"/>
 
                 <TextView
                     android:id="@+id/news_text"
                     style="@style/_TextView"
-                    android:textSize="10sp"/>
+                    android:textSize="12sp"/>
 
             </LinearLayout>
 

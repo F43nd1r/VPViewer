@@ -14,6 +14,7 @@ import com.faendir.kepi.vpviewer.utils.ServiceManager;
 import org.greenrobot.eventbus.EventBus;
 
 /**
+ * Migrates to latest version
  * Created by Lukas on 16.04.2016.
  */
 public final class Migrator {

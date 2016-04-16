@@ -7,7 +7,6 @@
 
 
     <ImageView
-        android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -15,5 +14,6 @@
         android:tint="#ffcccccc"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        app:layout_marginPercent="20%"/>
+        app:layout_marginPercent="20%"
+        android:contentDescription="@string/img_alert" />
 </com.faendir.kepi.vpviewer.views.SlidingFrameLayout>

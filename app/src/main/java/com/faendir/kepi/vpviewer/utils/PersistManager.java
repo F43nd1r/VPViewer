@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.faendir.kepi.vpviewer.R;
-import com.faendir.kepi.vpviewer.contexts.VPViewer;
 import com.faendir.kepi.vpviewer.data.Day;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

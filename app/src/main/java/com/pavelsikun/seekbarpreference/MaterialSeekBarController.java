@@ -23,9 +23,10 @@ import com.faendir.kepi.vpviewer.R;
 import static android.os.Build.VERSION.SDK_INT;
 
 /**
+ * controller
  * Created by mrbimc on 30.09.15.
  */
-public class MaterialSeekBarController implements SeekBar.OnSeekBarChangeListener {
+class MaterialSeekBarController implements SeekBar.OnSeekBarChangeListener {
 
     private final String TAG = getClass().getName();
 
@@ -48,7 +49,7 @@ public class MaterialSeekBarController implements SeekBar.OnSeekBarChangeListene
     private String mTitle;
     private String mSummary;
 
-    private Context mContext;
+    private final Context mContext;
 
     private Persistable mPersistable;
 
@@ -131,7 +132,7 @@ public class MaterialSeekBarController implements SeekBar.OnSeekBarChangeListene
         }
     }
 
-    void setSeekBarTintOnPreLollipop() { //TMP: I hope google will introduce native seekbar tinting for appcompat users
+    private void setSeekBarTintOnPreLollipop() { //TMP: I hope google will introduce native seekbar tinting for appcompat users
         if (SDK_INT < 21) {
             Resources.Theme theme = mContext.getTheme();
 
@@ -155,7 +156,7 @@ public class MaterialSeekBarController implements SeekBar.OnSeekBarChangeListene
         return ta.getInt(index, mCurrentValue);
     }
 
-    protected void onSetInitialValue(boolean restoreValue, @NonNull Object defaultValue) {
+    void onSetInitialValue(boolean restoreValue, @NonNull Object defaultValue) {
         mCurrentValue = (mMaxValue - mMinValue) / 2;
         try {
             mCurrentValue = (Integer) defaultValue;
@@ -252,7 +253,7 @@ public class MaterialSeekBarController implements SeekBar.OnSeekBarChangeListene
         return mMeasurementUnit;
     }
 
-    static int pxFromDp(int dp, Context context) {
+    private static int pxFromDp(int dp, Context context) {
         return (int) (dp * context.getResources().getDisplayMetrics().density);
     }
 }

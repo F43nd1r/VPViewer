@@ -27,7 +27,7 @@ import java.util.List;
 public class ListManager {
     private final Logger logger = new Logger(this);
     private final Activity context;
-    private Adapter adapter;
+    private final Adapter adapter;
 
     public ListManager(Activity context, RecyclerView recyclerView, View empty) {
         this.context = context;

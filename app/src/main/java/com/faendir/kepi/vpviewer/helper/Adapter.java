@@ -31,9 +31,10 @@ class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private final Activity context;
     private int selected = -1;
-    private List<Date> dates;
-    private View empty;
-    private @DrawableRes int background;
+    private final List<Date> dates;
+    private final View empty;
+    private @DrawableRes
+    final int background;
 
     public Adapter(Activity context, View empty) {
         super();
@@ -115,7 +116,7 @@ class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         }
     }
 
-    public boolean isManual(int position) {
+    private boolean isManual(int position) {
         return position == dates.size();
     }
 
@@ -125,7 +126,7 @@ class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView txt;
+        private final TextView txt;
         private Date date;
         private String string;
 
