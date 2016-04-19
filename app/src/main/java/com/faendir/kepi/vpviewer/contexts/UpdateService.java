@@ -77,7 +77,7 @@ public class UpdateService extends Service {
     }
 
     @Override
-    public int onStartCommand(final Intent intent, int flags, int startId) {
+    public int onStartCommand(final Intent intent, int flags, final int startId) {
         logger.log(R.string.log_onStart);
         new Thread(new Runnable() {
             @Override
@@ -89,10 +89,10 @@ public class UpdateService extends Service {
                     ConnectionResult result = getAndHandleRawHtml();
                     EventBus.getDefault().post(new UpdateEvent(result));
                 }
-                stopSelf();
+                stopSelf(startId);
             }
         }).start();
-        return Service.START_STICKY;
+        return Service.START_REDELIVER_INTENT;
     }
 
     @Nullable

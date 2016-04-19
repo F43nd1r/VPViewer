@@ -20,9 +20,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.android.support:recyclerview-v7:23.3.0'
-    compile 'com.android.support:percent:23.3.0'
+    def supportVersion = "23.3.0"
+    compile "com.android.support:appcompat-v7:$supportVersion"
+    compile "com.android.support:recyclerview-v7:$supportVersion"
+    compile "com.android.support:percent:$supportVersion"
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'commons-io:commons-io:2.4'
     compile 'ch.acra:acra:4.8.5'
