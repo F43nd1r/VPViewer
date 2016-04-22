@@ -12,7 +12,7 @@ import com.faendir.kepi.vpviewer.utils.Logger;
 
 /**
  * Manages the status area
- *
+ * <p>
  * Created by Lukas on 16.04.2016.
  */
 public class StatusManager {
@@ -32,12 +32,12 @@ public class StatusManager {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (wifi.isConnected()) status.setText(R.string.wifi_ok);
+        if (wifi != null && wifi.isConnected()) status.setText(R.string.wifi_ok);
         else {
             if (sharedPref.getBoolean(context.getString(R.string.pref_wifiOnly), false))
                 status.setText(R.string.wifi_fail);
             NetworkInfo mobile = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-            if (mobile.isConnected()) status.setText(R.string.network_ok);
+            if (mobile != null && mobile.isConnected()) status.setText(R.string.network_ok);
             else status.setText(R.string.network_fail);
         }
         status.invalidate();

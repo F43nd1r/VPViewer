@@ -85,7 +85,8 @@ public class UpdateService extends Service {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo wifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-                if (intent.getBooleanExtra(getString(R.string.extra_isForeground), false) || sharedPreferences.getBoolean(getString(R.string.pref_notify), false) && (!sharedPreferences.getBoolean(getString(R.string.pref_wifiOnly), false) || wifi.isConnected())) {
+                if (intent.getBooleanExtra(getString(R.string.extra_isForeground), false) || sharedPreferences.getBoolean(getString(R.string.pref_notify), false)
+                        && (!sharedPreferences.getBoolean(getString(R.string.pref_wifiOnly), false) || (wifi != null && wifi.isConnected()))) {
                     ConnectionResult result = getAndHandleRawHtml();
                     EventBus.getDefault().post(new UpdateEvent(result));
                 }
