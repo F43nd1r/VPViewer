@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
-        android:singleLine="true"
+        android:maxLines="1"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="16sp"/>
 
@@ -47,8 +47,8 @@
                 android:id="@+id/seekbar_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
                 android:paddingRight="10dp"
-                android:singleLine="true"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp"/>
 

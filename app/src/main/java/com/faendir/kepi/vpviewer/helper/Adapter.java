@@ -33,8 +33,8 @@ class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private int selected = -1;
     private final List<Date> dates;
     private final View empty;
-    private @DrawableRes
-    final int background;
+    @DrawableRes
+    private final int background;
 
     public Adapter(Activity context, View empty) {
         super();
@@ -131,9 +131,9 @@ class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         private String string;
 
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(TextView itemView) {
             super(itemView);
-            txt = (TextView) itemView;
+            txt = itemView;
             txt.setOnClickListener(this);
         }
 

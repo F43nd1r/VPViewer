@@ -8,7 +8,7 @@ import android.util.AttributeSet;
  * Created by Lukas on 18.01.2016.
  * supports animations by fractions of the display area
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "ResourceType"})
 public class SlidingFrameLayout extends PercentFrameLayout {
 
     public SlidingFrameLayout(Context context) {

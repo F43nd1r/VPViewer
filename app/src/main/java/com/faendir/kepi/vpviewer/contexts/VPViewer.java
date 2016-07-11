@@ -1,26 +1,19 @@
 package com.faendir.kepi.vpviewer.contexts;
 
 import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.annotation.StringRes;
 
 import com.faendir.kepi.vpviewer.R;
 import com.faendir.kepi.vpviewer.event.InvalidateRequest;
-import com.faendir.kepi.vpviewer.utils.Logger;
 
 import org.acra.ACRA;
-import org.acra.ACRAConstants;
-import org.acra.ReportField;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
-import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.HttpSender;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by Lukas on 14.04.2015.
@@ -42,17 +35,13 @@ public class VPViewer extends Application {
         ACRA.init(this);
         ACRA.getErrorReporter().clearCustomData();
         EventBus.getDefault().register(this);
-        setContext(getApplicationContext());
+        resources = getResources();
     }
 
-    private static Context context;
+    private static Resources resources;
 
     public static String getStringStatic(@StringRes int res) {
-        return context.getString(res);
-    }
-
-    private static void setContext(Context c) {
-        context = c;
+        return resources.getString(res);
     }
 
     @Subscribe

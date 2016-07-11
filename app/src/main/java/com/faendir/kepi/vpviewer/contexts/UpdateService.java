@@ -59,7 +59,6 @@ public class UpdateService extends Service {
     private static final String SELECTOR_TABLE_CELL = "td";
     private static final String SELECTOR_STATUS_DATE = "font";
     private static final String SELECTOR_NEWS_TABLE = ".info";
-    private static final String SELECTOR_LINE_BREAK = "br";
 
     public static final String HOST = "http://212.71.198.9";
     public static final String PAGE = "/vp_home/VP_Web.php";
@@ -136,7 +135,7 @@ public class UpdateService extends Service {
         }
     }
 
-    public ConnectionResult getAndHandleRawHtml() {
+    private ConnectionResult getAndHandleRawHtml() {
         try {
             OutputStream output = null;
             InputStream input = null;
@@ -235,8 +234,6 @@ public class UpdateService extends Service {
             ArrayList<String> list = new ArrayList<>();
             for (Element line : table.select(SELECTOR_TABLE_ROW)) {
                 if (line.select(SELECTOR_TABLE_HEADER).size() > 0) continue;
-                //line.select(SELECTOR_LINE_BREAK).append("\\n");
-                //String text = line.text().replace("\\n","\n").trim();
                 String text = line.html().trim();
                 if (text.length() > 0) {
                     list.add(text);

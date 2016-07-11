@@ -8,15 +8,6 @@ import android.util.Log;
 import com.faendir.kepi.vpviewer.BuildConfig;
 import com.faendir.kepi.vpviewer.contexts.VPViewer;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.LinkedBlockingQueue;
-
 /**
  * Created by Lukas on 04.03.2015.
  * Manages Logs in debug mode.

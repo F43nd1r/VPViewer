@@ -6,8 +6,6 @@ package com.faendir.kepi.vpviewer.views;
  */
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
