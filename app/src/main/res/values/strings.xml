@@ -3,7 +3,6 @@
 
     <string name="app_name">VPViewer</string>
     <string name="action_settings">Einstellungen</string>
-    <string name="service_name">UpdateService</string>
     <string name="unset">Nicht gesetzt</string>
     <string name="Login_ok">Login OK</string>
     <string name="Login_failed">Passwort/User-Kombination unbekannt</string>
@@ -18,7 +17,6 @@
     <string name="not_taking_place">fällt aus</string>
     <string name="VP_name">Vertretungsplan</string>
     <string name="status">Status</string>
-    <string name="logo_description">The logo</string>
     <string name="new_entries">"neue Vertretungen/Ausfälle"</string>
     <string-array name="update">
         <item>Alle 15 Minuten</item>
@@ -85,7 +83,6 @@
     <string name="error_unkownDay">Etwas ist schief gegangen…\n Sie werden auf die Hauptseite
         umgeleitet
     </string>
-    <string name="intent_bootCompleted">android.intent.action.BOOT_COMPLETED</string>
 
     <string name="file_days">days</string>
 
@@ -93,6 +90,8 @@
     <string name="key_login">login</string>
     <string name="key_update">update</string>
     <string name="key_runningVersion">runningVersion</string>
+    <string name="key_rawHtml">rawHtml</string>
+    <string name="key_lowSpace">lowSpace</string>
 
     <string name="pref_user">user</string>
     <string name="pref_class">class</string>
@@ -103,12 +102,16 @@
     <string name="pref_notify">notify</string>
     <string name="pref_interval">interval</string>
     <string name="pref_enableAcra">acra.enable</string>
+    <string name="pref_manualView">enableManualView</string>
+    <string name="pref_showDaysCount">showDaysCount</string>
+    <string name="pref_oddRows">oddRows</string>
+    <string name="pref_textSize">textSize</string>
 
     <string name="text_exclamation">!</string>
-    <string name="text_comma">", "</string>
+    <string name="text_comma">, </string>
 
     <string name="match_emptyArray">[]</string>
-    <string name="title_badLogin">Login fehlgeschalgen</string>
+    <string name="title_badLogin">Login fehlgeschlagen</string>
     <string name="button_login">Login</string>
     <string name="button_close">Schließen</string>
     <string name="title_badConnection">Verbindung nicht möglich</string>
@@ -117,19 +120,12 @@
     </string>
     <string name="log_onStop">onStop</string>
     <string name="title_enableAcra">Acra aktivieren</string>
-    <string name="key_rawHtml">rawHtml</string>
     <string name="manualView">Manuelle Ansicht</string>
-    <string name="pref_manualView">enableManualView</string>
     <string name="title_crash">Crash</string>
     <string name="text_crash">Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut. Falls der Fehler weiterhin auftritt, verwenden Sie die manuelle Ansicht.</string>
-    <string name="key_lowSpace">lowSpace</string>
-    <string name="pref_showDaysCount">showDaysCount</string>
     <string name="text_noData">Keine Daten gefunden\nTippen um es erneut zu versuchen</string>
     <string name="string_empty"> </string>
     <string name="extra_isForeground">isForeground</string>
-    <string name="img_alert">Alert</string>
     <string name="toast_crashSent">Entschuldigung, das hätte nicht passieren dürfen.\nBericht wird gesendet…</string>
-    <string name="pref_oddRows">oddRows</string>
-    <string name="pref_textSize">textSize</string>
 
 </resources>

@@ -87,7 +87,7 @@ public class MainFragment extends Fragment {
 
         if (id == R.id.action_force_update) {
             logger.log(R.string.log_updateSel);
-            EventBus.getDefault().post(new InvalidateRequest(true));
+            InvalidateRequest.post(true);
             logger.log(R.string.log_forcedUpdate);
             return true;
         }

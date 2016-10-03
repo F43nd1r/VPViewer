@@ -122,13 +122,13 @@ public class PrefsFragment extends PreferenceFragment implements SharedPreferenc
             String text = etp.getText();
             if (text.length() == 0) pref.setSummary(R.string.unset);
             else pref.setSummary(text);
-            EventBus.getDefault().post(new InvalidateRequest(true));
+            InvalidateRequest.post(true);
         } else if (key.equals(getString(R.string.pref_password))) {
             EditTextPreference etp = (EditTextPreference) pref;
             String text = etp.getText();
             if (text.length() == 0) etp.setSummary(R.string.unset);
             else etp.setSummary(R.string.Login_unknown);
-            EventBus.getDefault().post(new InvalidateRequest(true));
+            InvalidateRequest.post(true);
         } else if (key.equals(getString(R.string.pref_class))) {
             MultiSelectListPreference classPref = (MultiSelectListPreference) pref;
             String[] values = new String[0];

@@ -11,8 +11,6 @@ import com.faendir.kepi.vpviewer.event.InvalidateRequest;
 import com.faendir.kepi.vpviewer.utils.Logger;
 import com.faendir.kepi.vpviewer.utils.ServiceManager;
 
-import org.greenrobot.eventbus.EventBus;
-
 /**
  * Migrates to latest version
  * Created by Lukas on 16.04.2016.
@@ -45,7 +43,7 @@ public final class Migrator {
         editor.putBoolean(context.getString(R.string.pref_manualView), false);
         editor.putString(context.getString(R.string.key_runningVersion), currentVersion);
         editor.apply();
-        EventBus.getDefault().post(new InvalidateRequest(true));
+        InvalidateRequest.post(true);
     }
 
 }

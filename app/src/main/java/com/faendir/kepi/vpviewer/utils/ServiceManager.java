@@ -13,8 +13,6 @@ import com.faendir.kepi.vpviewer.R;
 import com.faendir.kepi.vpviewer.contexts.UpdateService;
 import com.faendir.kepi.vpviewer.event.InvalidateRequest;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.Calendar;
 import java.util.Date;
 
@@ -53,11 +51,11 @@ public final class ServiceManager {
             cal.setTime(update);
             cal.add(Calendar.MILLISECOND, Integer.parseInt(sharedPref.getString(context.getString(R.string.pref_interval), context.getString(R.string.update_default))));
             if (cal.before(Calendar.getInstance())) {
-                EventBus.getDefault().post(new InvalidateRequest(true));
+                InvalidateRequest.post(true);
                 logger.log(R.string.log_dataOutOfDate);
             }
         } else {
-            EventBus.getDefault().post(new InvalidateRequest(true));
+            InvalidateRequest.post(true);
             logger.log(R.string.log_noData);
         }
     }

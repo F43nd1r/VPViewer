@@ -19,7 +19,7 @@ import com.faendir.kepi.vpviewer.utils.ServiceManager;
 public class BootBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
-        if (intent.getAction().equals(context.getString(R.string.intent_bootCompleted))) {
+        if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             if (sharedPreferences.getBoolean(context.getString(R.string.pref_notify), false)) {
                 ServiceManager.scheduleService(context, Integer.parseInt(sharedPreferences.getString(context.getString(R.string.pref_interval), String.valueOf(AlarmManager.INTERVAL_HOUR))));

@@ -17,6 +17,7 @@ import android.support.v4.app.NotificationCompat;
 import com.faendir.kepi.vpviewer.R;
 import com.faendir.kepi.vpviewer.data.Day;
 import com.faendir.kepi.vpviewer.data.VPEntry;
+import com.faendir.kepi.vpviewer.event.InvalidateRequest;
 import com.faendir.kepi.vpviewer.event.UpdateEvent;
 import com.faendir.kepi.vpviewer.utils.ConnectionResult;
 import com.faendir.kepi.vpviewer.utils.DateFactory;
@@ -60,7 +61,7 @@ public class UpdateService extends Service {
     private static final String SELECTOR_STATUS_DATE = "font";
     private static final String SELECTOR_NEWS_TABLE = ".info";
 
-    public static final String HOST = "http://212.71.198.9";
+    public static final String HOST = "http://kepiserver.de";
     public static final String PAGE = "/vp_home/VP_Web.php";
 
     private SharedPreferences sharedPref;
@@ -90,6 +91,7 @@ public class UpdateService extends Service {
                     EventBus.getDefault().post(new UpdateEvent(result));
                 }
                 stopSelf(startId);
+                InvalidateRequest.dispose();
             }
         }).start();
         return Service.START_REDELIVER_INTENT;

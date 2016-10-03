@@ -11,7 +11,6 @@ import com.faendir.kepi.vpviewer.utils.LayoutManager;
 import com.faendir.kepi.vpviewer.utils.Logger;
 import com.faendir.kepi.vpviewer.utils.PersistManager;
 
-import org.greenrobot.eventbus.EventBus;
 import org.solovyev.android.views.llm.LinearLayoutManager;
 
 import java.util.Arrays;
@@ -37,7 +36,7 @@ public class ListManager {
         empty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new InvalidateRequest(true));
+                InvalidateRequest.post(true);
                 logger.log(R.string.log_forcedUpdate);
             }
         });

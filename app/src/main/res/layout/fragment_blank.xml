@@ -14,6 +14,5 @@
         android:tint="#ffcccccc"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        app:layout_marginPercent="20%"
-        android:contentDescription="@string/img_alert" />
+        app:layout_marginPercent="20%" />
 </com.faendir.kepi.vpviewer.views.SlidingFrameLayout>
